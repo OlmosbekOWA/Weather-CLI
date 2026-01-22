@@ -1,0 +1,20 @@
+{
+  "name": "weather-cli",
+  "version": "1.0.0",
+  "description": "Weather CLI Progect",
+  "repository": {
+    "type": "git",
+    "url": "Weather CLI"
+  },
+  "license": "ISC",
+  "author": "OlmosbekOWA",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
