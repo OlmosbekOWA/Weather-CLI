@@ -22,6 +22,26 @@ const startCLI = ()=>{
     
     // printSuccess("OK")
     // printError("no OK")
+
+    const getForcast = async () =>{
+
+        
+        try{
+            const response = await getWeather(process.env.city ?? "uzbekistan")
+            console.log(res);
+            
+        }catch(error){
+            if(error?.response?.status == 404){
+                printError("CITY not found")
+            }else if(error?.response?.status == 401){
+                printError("Invalid was token")
+            }else{
+                printError(error.massage)
+            }
+        }
+
+
+    }
     
     if(args.h){
         printHelp()
@@ -34,8 +54,11 @@ const startCLI = ()=>{
         return saveToken( args.t)
     }
 
+    getForcast()
+
     
-    getWeather("uzbekistan")
+    
+    
     
 
 }

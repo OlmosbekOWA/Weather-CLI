@@ -1,19 +1,18 @@
-import https from "https"
+
 import axios from "axios";
-import { URL } from "url"
 import { TOKEN_DICTIONARY, getKeyValue } from './storage.service.js';
 
 
 const getWeather = async (city)=>{
 
-    const token = await getKeyValue(TOKEN_DICTIONARY.token)
+    const token = process.env.token ?? await getKeyValue(TOKEN_DICTIONARY.token)
     
     
     if(!token){
         throw new Error("API does't exist, -t [API_KEY] for saving token")
     }
 
-    const response= await axios.get("https://api.openweathermap.org/data/2.5/weather", {
+    const response = await axios.get("https://api.openweathermap.org/data/2.5/weather", {
         params:{
             q: city,
             appid: token,
@@ -22,8 +21,10 @@ const getWeather = async (city)=>{
 
         }
     })
+   
+    
 
-    return data
+    return response
 
    
     // const url = new URL(`https://api.openweathermap.org/data/2.5/weather`)
