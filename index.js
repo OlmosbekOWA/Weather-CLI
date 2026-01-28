@@ -2,7 +2,9 @@
 import getArgs from "./helpers/args.js"
 import { printError, printSuccess, printHelp } from "./services/log.serveces.js"
 import { getKeyValue, saveKeyValue, TOKEN_DICTIONARY  } from "./services/storage.service.js"
-import getWeather from "./services/api.serveces.js"
+import {getWeather} from "./services/api.serveces.js"
+import printWeather from "./services/weather.print.js";
+
 
 const saveToken = async(token)=>{
     if(token.length == 0){
@@ -41,8 +43,8 @@ const startCLI = ()=>{
         
         try{
             const city = process.env.city ?? (await getKeyValue(TOKEN_DICTIONARY.city))
-            const response = await getWeather(city)
-            console.log(response);
+            const response = await getWeather(city);
+            printWeather(response.data);
             
         }catch(error){
             if(error?.response?.status == 404){
